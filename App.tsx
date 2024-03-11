@@ -1,11 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import WebView from "react-native-webview";
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+      <WebView
+        nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
+        ref={(ref: any) => {
+          // if (ref) {
+          //   this.webview = ref;
+          // }
+        }}
+        // Allow any URL to be loaded within the WebView
+        originWhitelist={['*']}
+
+        // Enable JS
+        javaScriptEnabled={true}
+
+        // Scrollable viewport
+        scrollEnabled={true}
+
+        // Enable Analytics cookies and such
+        thirdPartyCookiesEnabled={true}
+
+        source={{uri: 'https://commonwealth.im/'}}
+
+        onMessage={(event) => {
+        }}
+        onNavigationStateChange={(event) => {
+        }}
+        style={styles.webview}
+      />
+
     </View>
   );
 }
@@ -13,8 +41,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+
+  webview: {
+    flex: 1,
+    flexGrow: 1,
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'blue',
+    borderWidth: 5,
+    borderColor: 'black'
   },
 });
