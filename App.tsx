@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import WebView from "react-native-webview";
 import {AdaptiveKeyboardAvoidingView} from "./src/AdaptiveKeyboardAvoidingView";
 import {AdaptiveSafeAreaView} from "./src/AdaptiveSafeAreaView";
+import {InAppLiteServer} from "./src/InAppLiteServer";
 
 export default function App() {
   return (
@@ -10,33 +11,36 @@ export default function App() {
       <AdaptiveSafeAreaView>
         <View style={styles.container}>
 
-          <WebView
-            nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
-            ref={(ref: any) => {
-              // if (ref) {
-              //   this.webview = ref;
-              // }
-            }}
-            // Allow any URL to be loaded within the WebView
-            originWhitelist={['*']}
+          <InAppLiteServer>
 
-            // Enable JS
-            javaScriptEnabled={true}
+            <WebView
+              nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
+              ref={(ref: any) => {
+                // if (ref) {
+                //   this.webview = ref;
+                // }
+              }}
+              // Allow any URL to be loaded within the WebView
+              originWhitelist={['*']}
 
-            // Scrollable viewport
-            scrollEnabled={true}
+              // Enable JS
+              javaScriptEnabled={true}
 
-            // Enable Analytics cookies and such
-            thirdPartyCookiesEnabled={true}
+              // Scrollable viewport
+              scrollEnabled={true}
 
-            source={{uri: 'https://commonwealth.im/'}}
+              // Enable Analytics cookies and such
+              thirdPartyCookiesEnabled={true}
 
-            onMessage={(event) => {
-            }}
-            onNavigationStateChange={(event) => {
-            }}
-            style={styles.webview}
-          />
+              source={{uri: 'https://commonwealth.im/'}}
+
+              onMessage={(event) => {
+              }}
+              onNavigationStateChange={(event) => {
+              }}
+              style={styles.webview}
+            />
+          </InAppLiteServer>
 
         </View>
       </AdaptiveSafeAreaView>
