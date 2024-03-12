@@ -11,36 +11,33 @@ export default function App() {
       <AdaptiveSafeAreaView>
         <View style={styles.container}>
 
-          <InAppLiteServer>
+          <WebView
+            nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
+            ref={(ref: any) => {
+              // if (ref) {
+              //   this.webview = ref;
+              // }
+            }}
+            // Allow any URL to be loaded within the WebView
+            originWhitelist={['*']}
 
-            <WebView
-              nativeConfig={{props: {webContentsDebuggingEnabled: true}}}
-              ref={(ref: any) => {
-                // if (ref) {
-                //   this.webview = ref;
-                // }
-              }}
-              // Allow any URL to be loaded within the WebView
-              originWhitelist={['*']}
+            // Enable JS
+            javaScriptEnabled={true}
 
-              // Enable JS
-              javaScriptEnabled={true}
+            // Scrollable viewport
+            scrollEnabled={true}
 
-              // Scrollable viewport
-              scrollEnabled={true}
+            // Enable Analytics cookies and such
+            thirdPartyCookiesEnabled={true}
 
-              // Enable Analytics cookies and such
-              thirdPartyCookiesEnabled={true}
+            source={{uri: 'https://commonwealth.im/'}}
 
-              source={{uri: 'https://commonwealth.im/'}}
-
-              onMessage={(event) => {
-              }}
-              onNavigationStateChange={(event) => {
-              }}
-              style={styles.webview}
-            />
-          </InAppLiteServer>
+            onMessage={(event) => {
+            }}
+            onNavigationStateChange={(event) => {
+            }}
+            style={styles.webview}
+          />
 
         </View>
       </AdaptiveSafeAreaView>
